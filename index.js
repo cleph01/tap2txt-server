@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 
 const pino = require("express-pino-logger")();
 const client = require("twilio")(
@@ -8,6 +9,7 @@ const client = require("twilio")(
 );
 
 const server = express();
+server.use(cors());
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
 server.use(pino);
