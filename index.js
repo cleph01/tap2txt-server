@@ -1,4 +1,6 @@
+require("dotenv").config();
 const express = require("express");
+
 const pino = require("express-pino-logger")();
 const client = require("twilio")(
     process.env.TWILIO_ACCOUNT_SID,
