@@ -1,6 +1,7 @@
-require("dotenv").config();
 const express = require("express");
+const helmet = require("helmet");
 const cors = require("cors");
+require("dotenv").config();
 
 const pino = require("express-pino-logger")();
 const client = require("twilio")(
@@ -9,10 +10,16 @@ const client = require("twilio")(
 );
 
 const server = express();
-server.use(cors({ origin: true }));
-server.use(express.urlencoded({ extended: false }));
+
+server.use(helmet());
 server.use(express.json());
+server.use(cors());
+
 server.use(pino);
+
+server.get("/", (req, res) => {
+    res.send("This is the Demo page for" + " setting up express server !");
+});
 
 server.post("/api/messages", (req, res) => {
     res.header("Content-Type", "application/json");
