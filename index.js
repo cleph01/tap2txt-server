@@ -23,6 +23,7 @@ server.get("/", (req, res) => {
 
 server.post("/api/messages", (req, res) => {
     // res.header("Access-Control-Allow-Origin", "https://tap2txt-com.web.app/");
+    res.set("Access-Control-Allow-Origin", "*");
 
     const smsBody =
         req.body.message.body +
