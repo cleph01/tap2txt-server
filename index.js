@@ -9,14 +9,14 @@ const client = require("twilio")(
 );
 
 const server = express();
-server.use(cors());
+server.use(cors({ origin: true }));
 server.use(express.urlencoded({ extended: false }));
 server.use(express.json());
 server.use(pino);
 
 server.post("/api/messages", (req, res) => {
     res.header("Content-Type", "application/json");
-    res.header("Access-Control-Allow-Origin", "https://tap2txt-com.web.app/");
+    // res.header("Access-Control-Allow-Origin", "https://tap2txt-com.web.app/");
 
     const smsBody =
         req.body.message.body +
