@@ -16,6 +16,7 @@ server.use(pino);
 
 server.post("/api/messages", (req, res) => {
     res.header("Content-Type", "application/json");
+    res.header("Access-Control-Allow-Origin", "true");
 
     const smsBody =
         req.body.message.body +
